@@ -1,10 +1,11 @@
+import os
+
 import requests
-from Helpers.timeout_helper import timeout_helper
-import Helpers.server_info
+
+from timeout_helper import timeout_helper
 import VkList
 import VkSpy
-import Helpers.server_info
-import os
+import server_info
 
 URL = 'https://api.telegram.org/bot'
 TOKEN = ''
@@ -38,7 +39,7 @@ def process():
 
             mes = update['message']
             from_id = mes['chat']['id']
-            Helpers.server_info.processed_telegram_messages += 1
+            server_info.processed_telegram_messages += 1
 
             if from_id != author_id:
                 send_text(from_id, 'you are not my owner')
@@ -123,7 +124,7 @@ def run_command(chat_id, text):
                     return
 
         if params_lens >= 1 and params[0] == 'status':
-            send_text(chat_id, Helpers.server_info.get_uptime())
+            send_text(chat_id, server_info.get_uptime())
             return
 
         if params_lens >= 2 and params[0] == 'force' and params[1] == 'save':

@@ -1,12 +1,14 @@
-import VkParser
-import VkList
 from datetime import datetime
 import os
+
 from PIL import Image, ImageDraw, ImageFont
+
 import PIL
 
-from Helpers.timeout_helper import timeout_helper
-import Helpers.server_info
+import VkParser
+import VkList
+from timeout_helper import timeout_helper
+import server_info
 
 user_directory = "users_activity"
 
@@ -159,7 +161,7 @@ def save(force: bool = False) -> bool:
         if force:
             process_save_timeout.force_update()
 
-        Helpers.server_info.bd_saves += 1
+        server_info.bd_saves += 1
         users = VkList.get_users()
         for user in users:
 
