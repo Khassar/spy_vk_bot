@@ -15,6 +15,12 @@ author_id = 97397688
 process_timeout = timeout_helper(1)
 
 
+def init(owner_id,telegram_api_token):
+    global author_id,TOKEN
+    author_id=owner_id
+    TOKEN=telegram_api_token
+
+
 def process():
     if not process_timeout.will_process():
         return
@@ -22,11 +28,6 @@ def process():
     global offset, TOKEN
 
     try:
-
-        if TOKEN == '':
-            f = open('telegram_token.txt', 'r')
-            TOKEN = f.readlines()[0]
-
         data = {'offset': offset, 'limit': 100, 'timeout': 0}
         request = requests.post(URL + TOKEN + '/getUpdates', data=data)
 
