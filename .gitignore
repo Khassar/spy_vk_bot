@@ -1,0 +1,5 @@
+*.txt
+*.pyc
+tmp.jpeg
+/.idea
+test.py
