@@ -15,7 +15,7 @@ def get_users():
 
     try:
         f = open(vk_user_file, 'r')
-        users.clear()
+        users = []
         for line in f.readlines():
             user = line.replace('\n', "").replace('\r', "")
             if user == '':
