@@ -16,10 +16,10 @@ author_id = 97397688
 process_timeout = timeout_helper(1)
 
 
-def init(owner_id,telegram_api_token):
-    global author_id,TOKEN
-    author_id=owner_id
-    TOKEN=telegram_api_token
+def init(owner_id, telegram_api_token):
+    global author_id, TOKEN
+    author_id = owner_id
+    TOKEN = telegram_api_token
 
 
 def process():
@@ -33,6 +33,7 @@ def process():
         request = requests.post(URL + TOKEN + '/getUpdates', data=data)
 
         if not request.status_code == 200:
+            print('telegram request code != 200')
             return
 
         for update in request.json()['result']:
@@ -58,9 +59,9 @@ def process():
 def run_command(chat_id, text):
     try:
         params = text
-        params = params.replace('/', '')
         params = params.replace('_', ' ')
         params = params.split(' ')
+        params[0] = params[0].replace('/', '')
 
         tmp = []
         for t in params:
@@ -157,7 +158,7 @@ def send_text(chat_id, text):
     rec = requests.post(URL + TOKEN + '/sendMessage', data=data)
 
     if not rec.status_code == 200:
-        print("fail 200")
+        print("send_text error, status code - " + str(rec.status_code))
     else:
         if not rec.json()['ok']:
             print("fail json parse")

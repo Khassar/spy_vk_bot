@@ -25,7 +25,8 @@ def get_users():
         f.close()
         loaded = True
         return users
-    except:
+    except Exception as e:
+        print('vk_list error - '+str(e))
         return []
 
 
