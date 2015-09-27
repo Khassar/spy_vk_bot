@@ -19,7 +19,7 @@ process_save_timeout = timeout_helper(60 * 30)
 
 
 def _get_file_path(file):
-    return user_directory + '\\' + file + '.txt'
+    return user_directory + os.pathsep + file + '.txt'
 
 
 def _prepare_if_needed():
