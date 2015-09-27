@@ -14,6 +14,7 @@ def get_users():
         return users
 
     try:
+        print('start loading user list')
         f = open(vk_user_file, 'r')
         users = []
         for line in f.readlines():

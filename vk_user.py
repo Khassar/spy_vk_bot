@@ -16,7 +16,7 @@ class vk_user(object):
         return
 
     def clear_times(self):
-        self.times.clear()
+        self.times = []
         for i in range(0, 1440):
             self.times.append(0)
         return
