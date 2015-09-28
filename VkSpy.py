@@ -98,18 +98,22 @@ def get_image(user, custom_date: datetime = None) -> Image:
 
         for x in range(width):
             c = int(255 * x / width)
-            r = 0
-            g = 0
+            r = 255
+            g = 255
             b = 0
 
             if activity[x] == 1:
+                r = 0
                 g = 255
+                b = 0
             if activity[x] == 2:
                 r = 0
                 g = 0
                 b = 0
             if activity[x] == 3:
                 r = 255
+                g = 0
+                b = 0
             if activity[x] == 0:
                 r = 60
                 g = 60
@@ -162,6 +166,7 @@ def save(force: bool = False) -> bool:
             process_save_timeout.force_update()
 
         server_info.bd_saves += 1
+        server_info.bd_last_save_time=datetime.now()
         users = VkList.get_users()
         for user in users:
 
