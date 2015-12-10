@@ -44,6 +44,7 @@ def process():
 
             if from_id != author_id:
                 send_text(from_id, 'you are not my owner')
+                offset = update['update_id'] + 1
                 continue
 
             if not 'message' in update or not 'text' in update['message']:

@@ -97,29 +97,37 @@ def get_image(user, custom_date: datetime = None) -> Image:
         font = ImageFont.truetype("font.ttf", 16)
 
         for x in range(width):
-            c = int(255 * x / width)
+            # c = int(255 * x / width)
             r = 255
             g = 255
             b = 0
 
-            if activity[x] == 1:
+            by = 0
+
+            # online or online_mobile
+            if activity[x] == 1 or activity[x] == 2:
                 r = 0
                 g = 255
                 b = 0
-            if activity[x] == 2:
+                if activity[x] == 2:
+                    by = height * 3 / 4.0
+            # offline
+            if activity[x] == 3:
                 r = 0
                 g = 0
                 b = 0
-            if activity[x] == 3:
+            # error
+            if activity[x] == 4:
                 r = 255
                 g = 0
                 b = 0
+            # none
             if activity[x] == 0:
                 r = 60
                 g = 60
                 b = 60
 
-            draw.line((x, 0) + (x, height), (r, g, b))
+            draw.line((x, by) + (x, height), (r, g, b))
 
         new_width = 144 * 5
         img = img.resize((new_width, 200), PIL.Image.ANTIALIAS)

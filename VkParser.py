@@ -7,7 +7,6 @@ import VkList
 
 vk_access_token = ''
 
-
 METHODS_URL = 'https://api.vk.com/method/'
 
 
@@ -51,7 +50,8 @@ def process(users):
 
     time.sleep(1)
 
-    results = requests.get(METHODS_URL + 'users.get', {'user_ids': ids_str, 'fields': 'online'}).json()['response']
+    results = requests.get(METHODS_URL + 'users.get', {'user_ids': ids_str, 'fields': 'online_mobile,sex,online'}).json()[
+        'response']
 
     for i in range(len(results)):
         res = results[i]
@@ -62,6 +62,8 @@ def process(users):
         online = 'offline'
         if res['online'] == 1:
             online = 'online'
+        if 'online_mobile' in res and res['online_mobile'] == 1:
+            online = 'online_mobile'
 
         user.times[index] = activity_helper.activity_to_int(online)
         user.name = res['first_name'] + ' ' + res['last_name']

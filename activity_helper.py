@@ -1,4 +1,4 @@
-activity_dic = {'none': 0, 'online': 1, 'offline': 2, 'error': 3}
+activity_dic = {'none': 0, 'online': 1, 'online_mobile': 2, 'offline': 3, 'error': 4}
 
 
 def activity_to_int(act):
